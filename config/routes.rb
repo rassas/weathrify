@@ -12,5 +12,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "home#index"
 
-  resources :registrations, path: :users, path_names: { new: :sign_up }, only: [:new, :create]
+  resources :registrations, path: :users, path_names: { new: :sign_up }, only: [ :new, :create ]
 end
