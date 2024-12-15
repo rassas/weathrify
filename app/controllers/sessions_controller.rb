@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(username: params[:user][:username])
 
     if @user && @user.authenticate(params[:user][:password])
-      session[:user_id] = @user.id
+      sign_in(@user)
       redirect_to root_path, flash: { notice: "Signed In successfully" }
     else
       redirect_to new_session_path, flash: { alert: "Sign In failed" }
@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
+    sign_out
     redirect_to new_session_path, flash: { notice: "Signed Out successfully" }
   end
 end

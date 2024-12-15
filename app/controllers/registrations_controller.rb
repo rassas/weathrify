@@ -7,9 +7,8 @@ class RegistrationsController < ApplicationController
     @user = User.new(registration_params)
 
     if @user.save
-      session[:user_id] = @user.id
-      flash[:notice] = "Signed up successfully"
-      redirect_to root_path
+      sign_in(user)
+      redirect_to root_path, flash: { notice: "Signed up successfully" }
     else
       flash[:alert] = "User not created"
       render :new, status: :unprocessable_entity
