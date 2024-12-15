@@ -1,0 +1,15 @@
+<h1>Sign In</h1>
+<%= form_with model: @user, url: new_session_path do |f| %>
+  <div>
+    <%= f.label :username %><br>
+    <%= f.text_field :username %>
+  </div>
+  <div>
+    <%= f.label :password %><br>
+    <%= f.password_field :password %>
+  </div>
+  <p>
+    <%= f.submit 'Sign In' %>
+    <%= link_to "Sign Up", new_registration_path %>
+  </p>
+<% end %>

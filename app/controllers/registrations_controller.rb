@@ -7,6 +7,7 @@ class RegistrationsController < ApplicationController
     @user = User.new(registration_params)
 
     if @user.save
+      session[:user_id] = @user.id
       flash[:notice] = "Signed up successfully"
       redirect_to root_path
     else
