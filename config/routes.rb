@@ -13,6 +13,6 @@ Rails.application.routes.draw do
   root "home#index"
 
   resources :registrations, path: :users, path_names: { new: :sign_up }, only: [ :new, :create ]
-  resource :session, path: :users, path_names: { new: :sign_in }, only: [ :new ]
+  resource :session, path: :users, path_names: { new: :sign_in }, only: [ :new, :destroy ]
   resource :session, path: "users/sign_in", only: [ :create ]
 end

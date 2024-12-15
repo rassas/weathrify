@@ -8,10 +8,14 @@ class SessionsController < ApplicationController
 
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
-      redirect_to root_path
+      redirect_to root_path, flash: { notice: "Signed In successfully" }
     else
-      flash[:alert] = "Login failed"
-      redirect_to new_session_path
+      redirect_to new_session_path, flash: { alert: "Sign In failed" }
     end
+  end
+
+  def destroy
+    session[:user_id] = nil
+    redirect_to new_session_path, flash: { notice: "Signed Out successfully" }
   end
 end
