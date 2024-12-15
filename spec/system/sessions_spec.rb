@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "Session Management", type: :system do
   let!(:user) { create(:user, username: "testuser", password: "password") }

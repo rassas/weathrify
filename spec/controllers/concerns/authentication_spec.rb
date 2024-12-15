@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Authentication, type: :controller do
   controller(ApplicationController) do
@@ -59,7 +59,7 @@ RSpec.describe Authentication, type: :controller do
     end
 
     before do
-      routes.draw { get 'protected_action' => 'anonymous#protected_action' }
+      routes.draw { get "protected_action" => "anonymous#protected_action" }
     end
 
     context "when user is signed in" do
