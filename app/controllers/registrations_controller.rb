@@ -7,7 +7,7 @@ class RegistrationsController < ApplicationController
     @user = User.new(registration_params)
 
     if @user.save
-      sign_in(user)
+      sign_in(@user)
       redirect_to root_path, flash: { notice: "Signed up successfully" }
     else
       flash[:alert] = "User not created"
