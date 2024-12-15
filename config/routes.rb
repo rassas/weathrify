@@ -15,4 +15,14 @@ Rails.application.routes.draw do
   resources :registrations, path: :users, path_names: { new: :sign_up }, only: [ :new, :create ]
   resource :session, path: :users, path_names: { new: :sign_in }, only: [ :new, :destroy ]
   resource :session, path: "users/sign_in", only: [ :create ]
+
+  namespace :api do
+    namespace :v1 do
+      defaults format: :json do
+        resource :session, path: "users/sign_in", only: [ :create ]
+        resource :session, path: :users, only: [ :destroy ]
+        resources :registrations, path: :users, only: [ :create ]
+      end
+    end
+  end
 end
