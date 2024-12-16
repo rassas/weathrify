@@ -7,7 +7,7 @@ module Api::V1::Concerns::Authentication
 
   def authenticate_user
     # Expecting something like: Authorization: <token>
-    auth_header = request.headers['Authorization']
+    auth_header = request.headers["Authorization"]
 
     if auth_header.present?
       @current_token = Token.find_by(token: auth_header)
