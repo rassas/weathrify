@@ -26,7 +26,7 @@ module Services
           @token = user.tokens.create
           unless token.persisted?
             # If token fails to persist, rollback
-            user.errors.add(:base, "Something went wrong! Please try again.") 
+            user.errors.add(:base, "Something went wrong! Please try again.")
             raise ActiveRecord::Rollback
           end
         end

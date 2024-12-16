@@ -24,7 +24,7 @@ RSpec.describe User, type: :model do
     end
 
     context "with a duplicate username" do
-      before { create(:user, username: "testuser") } 
+      before { create(:user, username: "testuser") }
       let(:user) { build(:user, username: "testuser") }
 
       it "is not valid" do

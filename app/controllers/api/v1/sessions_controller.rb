@@ -1,7 +1,7 @@
 module Api
   module V1
     class SessionsController < ::Api::V1::ApplicationController
-      before_action :authenticate_user, only: [:destroy]
+      before_action :authenticate_user, only: [ :destroy ]
 
       def create
         service = ::Services::Users::SignInService.new(username: params[:username], password: params[:password])
