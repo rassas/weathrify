@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_14_231805) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_15_210852) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "tokens", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.text "token", null: false
+    t.datetime "expires_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["token"], name: "index_tokens_on_token", unique: true
+    t.index ["user_id"], name: "index_tokens_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
@@ -22,4 +32,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_14_231805) do
     t.datetime "updated_at", null: false
     t.index ["username"], name: "index_users_on_username", unique: true
   end
+
+  add_foreign_key "tokens", "users", on_delete: :cascade
 end
