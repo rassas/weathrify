@@ -4,15 +4,16 @@ module Api
       before_action :authenticate_user, only: [:destroy]
 
       def create
-        user = User.find_by(username: params[:username])
-        if user&.authenticate(params[:password])
-          token = user.tokens.create! # This will generate a new token
-          render json: { 
-            user: { id: user.id, username: user.username }, 
-            token: token.token 
+        service = ::Services::Users::SignInService.new(username: params[:username], password: params[:password])
+        result = service.call
+
+        if result[:success]
+          render json: {
+            user: { id: result[:user].id, username: result[:user].username },
+            token: result[:token].token
           }, status: :created
         else
-          render json: { error: "Invalid credentials" }, status: :unauthorized
+          render json: { error: result[:errors].join(", ") }, status: :unauthorized
         end
       end
 
