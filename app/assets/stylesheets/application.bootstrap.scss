@@ -1,2 +1,15 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+@import './weather.scss';
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8f9fa;
+}
+
+.weathrify-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #007bff;
+  font-family: 'Pacifico', cursive;
+}

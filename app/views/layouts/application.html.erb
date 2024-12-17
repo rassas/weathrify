@@ -21,13 +21,15 @@
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?v=3&libraries=geometry,places&language=en&key=#{ Rails.application.credentials.gmap_apikey }" %>
   </head>
 
   <body>
     <%= render "/layouts/navbar" %>
     <% flash.each do |type, msg| %>
-      <div>
+      <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
         <%= msg %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     <% end %>
     <%= yield %>
