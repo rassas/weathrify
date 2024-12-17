@@ -2,4 +2,4 @@
 import * as bootstrap from "bootstrap";
 import "src/autocomplete";
 
-import "components";
+import "src/mountComponents"
