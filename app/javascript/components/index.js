@@ -3,24 +3,21 @@ import h from "components/htm_create_element";
 import Weather from "components/Weather";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const weatherElement = document.getElementById("react-weather")
-  if (weatherElement) {
-    const root = createRoot(weatherElement);
-    const weatherData = {
-      city: "Paris",
-      date: "December 16, 2024",
-      temperature: "25°C",
-      feelsLike: "27°C",
-      isDay: false,
-      condition: "cloudy",
-      forecast: [
-        { day: "Monday", condition: "cloudy", min: "12°C", max: "20°C" },
-        { day: "Tuesday", condition: "rainy", min: "10°C", max: "18°C" },
-        { day: "Wednesday", condition: "sunny", min: "14°C", max: "22°C" },
-        { day: "Thursday", condition: "sunny", min: "14°C", max: "22°C" },
-        { day: "Friday", condition: "sunny", min: "14°C", max: "22°C" }
-      ]
+  const mountPoints = document.querySelectorAll("[data-react-component]");
+  mountPoints.forEach((mountPoint) => {    
+    const componentName = mountPoint.dataset.reactComponent;
+    if (componentName) {
+      const Component = eval(componentName);
+      if (Component) {
+        const props = JSON.parse(mountPoint.dataset.props);
+        const root = createRoot(mountPoint);
+        root.render(h`<${Component} ...${props} />`);
+      } else {
+        console.warn(
+          "WARNING: No component found for: ",
+          componentName
+        );
+      }
     }
-    root.render(h`<${Weather} weatherData="${weatherData}"/>`);
-  }
+  });
 });

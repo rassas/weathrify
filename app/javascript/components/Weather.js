@@ -1,7 +1,7 @@
 import h from "components/htm_create_element";
 import ForecastRow from "components/ForecastRow";
 
-export default function Weather({weatherData}) {
+export default function Weather(weatherData) {
   return(h`
     <div class="weather-container ${weatherData.isDay ? "day" : "night"}">
       <div class="current-weather text-center">
