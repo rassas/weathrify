@@ -30,6 +30,11 @@
   }
 }
 
+.current-weather {
+  width: 100%;
+  max-width: 600px;
+}
+
 .current-weather h1,
 .current-weather h2 {
   font-family: 'Poppins', sans-serif;
@@ -90,4 +95,17 @@
 .min-temp, .max-temp {
   text-align: right;
   font-size: 0.9rem;
+}
+
+.card-name-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.favorite {
+  position: absolute;
+  right: 0;
+  cursor: pointer;
 }

@@ -1,7 +1,11 @@
 import h from "components/htm_create_element";
 import ForecastRow from "components/ForecastRow";
 
-export default function Weather(weatherData) {
+export default function Weather(data) {
+  const weatherData = data.weatherData
+  let isFavorite = data.isFavorite
+  let loading = false;
+
   const handleRowClick = (dayData) => {
     if (dayData.date === weatherData.date) {
       document.querySelector(".date").textContent = weatherData.date;
@@ -14,10 +18,51 @@ export default function Weather(weatherData) {
     }
   };
 
+  const toggleFavorite = () => {
+    if (loading) return
+    loading = true
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const latParam = urlParams.get('lat');
+    const lngParam = urlParams.get('lng');
+    const cityParam = urlParams.get('city');
+
+    const csrf_token = document.querySelector("meta[name='csrf-token']").content
+
+    fetch('/cities/toggle_favorite', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: 
+      JSON.stringify({
+        lat: latParam,
+        lng: lngParam,
+        name: cityParam,
+        authenticity_token: csrf_token
+      }),
+    })
+    .then(() => {
+      loading = false
+      window.location.reload()
+    })
+    .catch(error => {
+      loading = false
+      console.error('Error with POST request:', error);
+    });
+  }
+
   return(h`
     <div class="weather-container ${weatherData.isDay ? "day" : "night"}">
       <div class="current-weather text-center">
-        <h1 class="city-name">${weatherData.city}</h1>
+        <div class="card-name-container">
+          <h1 class="city-name">
+            ${weatherData.city}
+          </h1>
+          <span class="favorite" onClick=${toggleFavorite}>
+            <i class="bi ${isFavorite ? "bi-heart-fill" : "bi-heart" }"></i>
+          </span>
+        </div>
         <p class="date">${weatherData.date}</p>
         <h2 class="temperature">${weatherData.temperature}</h2>
         <p class="feels-like">Feels Like: ${weatherData.feelsLike}</p>

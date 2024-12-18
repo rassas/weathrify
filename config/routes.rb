@@ -16,6 +16,12 @@ Rails.application.routes.draw do
   resource :session, path: :users, path_names: { new: :sign_in }, only: [ :new, :destroy ]
   resource :session, path: "users/sign_in", only: [ :create ]
 
+  resources :cities, only: [] do
+    collection do
+      post :toggle_favorite
+    end
+  end
+
   namespace :api do
     namespace :v1 do
       defaults format: :json do
