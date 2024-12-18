@@ -15,8 +15,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const currentUrl = new URL(window.location.href);
       currentUrl.searchParams.set('city', place.formatted_address);
-      currentUrl.searchParams.set('lat', place.geometry.location.lat);
-      currentUrl.searchParams.set('lng', place.geometry.location.lat);
+      currentUrl.searchParams.set('lat', place.geometry.location.lat());
+      currentUrl.searchParams.set('lng', place.geometry.location.lng());
 
       window.location.href = currentUrl.toString();
     });
