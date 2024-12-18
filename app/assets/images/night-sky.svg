@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="nightGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0B0033; stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1F1C2C; stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#nightGradient)" />
+  <circle cx="700" cy="100" r="40" fill="#F0E68C" /> <!-- Moon -->
+  <circle cx="200" cy="200" r="3" fill="#FFFFFF" /> <!-- Star -->
+  <circle cx="400" cy="100" r="3" fill="#FFFFFF" /> <!-- Star -->
+</svg>

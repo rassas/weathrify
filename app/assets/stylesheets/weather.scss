@@ -1,0 +1,93 @@
+.weather-container {
+  height: calc(100vh - 62px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.weather-container.day {
+  background: linear-gradient(to bottom, #87ceeb, #fdfbfb);
+  background-image: url('day-sky.svg');
+  background-size: cover;
+  background-position: center;
+  color: #000;
+}
+
+.weather-container.night {
+  background: linear-gradient(to bottom, #1e3c72, #2a5298);
+  background-image: url('night-sky.svg');
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+
+  .min-temp, .max-temp {
+    color: #ccc;
+  }
+}
+
+.current-weather h1,
+.current-weather h2 {
+  font-family: 'Poppins', sans-serif;
+}
+
+#temperature {
+  font-size: 3rem;
+}
+
+#feels-like {
+  font-size: 1.2rem;
+}
+
+.forecast-card {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  width: 90%;
+  max-width: 600px;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.card-header .calendar-icon {
+  width: 20px;
+  margin-right: 10px;
+}
+
+.forecast-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 0.5rem 0;
+  cursor: pointer;
+}
+
+.forecast-row .day-name {
+  text-align: left;
+}
+
+.forecast-row .weather-icon {
+  width: 30px;
+  justify-self: center;
+}
+
+.forecast-row .min-temp,
+.forecast-row .max-temp {
+  text-align: right;
+}
+
+.min-temp, .max-temp {
+  text-align: right;
+  font-size: 0.9rem;
+}

@@ -3,6 +3,9 @@ require "rails_helper"
 RSpec.describe "Session Management", type: :system do
   let!(:user) { create(:user, username: "testuser", password: "password") }
 
+  # redirecting to root_path requires mocking weather service
+  include_context "Mock Weather Service"
+
   describe "Sign In" do
     it "signs in the user successfully with valid credentials" do
       visit new_session_path
