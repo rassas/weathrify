@@ -11,7 +11,8 @@ require "rspec/rails"
 
 require "capybara/rspec"
 
-require 'shoulda/matchers'
+require "shoulda/matchers"
+require "webmock/rspec"
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
