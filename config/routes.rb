@@ -28,6 +28,7 @@ Rails.application.routes.draw do
         resource :session, path: "users/sign_in", only: [ :create ]
         resource :session, path: :users, only: [ :destroy ]
         resources :registrations, path: :users, only: [ :create ]
+        resources :temperatures, only: :index
       end
     end
   end
