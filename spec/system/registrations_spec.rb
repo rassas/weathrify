@@ -3,6 +3,9 @@ require "rails_helper"
 RSpec.describe "User Registration", type: :system do
   describe "Sign Up" do
     context "when valid details are provided" do
+      # redirecting to root_path requires mocking weather service
+      include_context "Mock Weather Service"
+
       it "creates a new user and signs them in" do
         visit new_registration_path
 
