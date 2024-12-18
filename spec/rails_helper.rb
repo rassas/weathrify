@@ -91,3 +91,5 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+WebMock.disable_net_connect!(allow_localhost: true)
