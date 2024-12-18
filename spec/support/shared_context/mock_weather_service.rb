@@ -1,5 +1,5 @@
 RSpec.shared_context "Mock Weather Service" do
-  let(:mock_weather_service) { instance_double(Services::Weather::WeatherService) }
+  let(:mock_weather_service) { instance_double(Services::Weather::CurrentWeatherWithForecastService) }
   let(:weather_service_results) do
     {
       city: "Paris",
@@ -18,7 +18,7 @@ RSpec.shared_context "Mock Weather Service" do
   end
 
   before do
-    allow(Services::Weather::WeatherService).to receive(:new).and_return(mock_weather_service)
+    allow(Services::Weather::CurrentWeatherWithForecastService).to receive(:new).and_return(mock_weather_service)
     allow(mock_weather_service).to receive(:call).and_return(weather_service_results)
   end
 end

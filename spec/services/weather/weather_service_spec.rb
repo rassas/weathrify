@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Services::Weather::WeatherService, type: :service do
+RSpec.describe Services::Weather::CurrentWeatherWithForecastService, type: :service do
   let(:lat) { 40.7128 }
   let(:lng) { -74.0060 }
 

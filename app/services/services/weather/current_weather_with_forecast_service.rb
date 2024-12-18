@@ -1,6 +1,6 @@
 module Services
   module Weather
-    class WeatherService
+    class CurrentWeatherWithForecastService
       def initialize(lat:, lng:)
         @lat = lat
         @lng = lng
