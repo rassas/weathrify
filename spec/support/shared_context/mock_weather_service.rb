@@ -16,7 +16,7 @@ RSpec.shared_context "Mock Weather Service" do
       ]
     }
   end
-  
+
   before do
     allow(Services::Weather::WeatherService).to receive(:new).and_return(mock_weather_service)
     allow(mock_weather_service).to receive(:call).and_return(weather_service_results)
