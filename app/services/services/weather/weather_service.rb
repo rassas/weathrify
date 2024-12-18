@@ -34,30 +34,30 @@ module Services
       end
 
       def city_name
-        current_weather['city_name']
+        current_weather["city_name"]
       end
 
       def temperature
-        current_weather['temp'].round
+        current_weather["temp"].round
       end
 
       def feels_like
-        current_weather['app_temp'].round
+        current_weather["app_temp"].round
       end
 
       def is_day
-        current_weather['pod'] == 'd'
+        current_weather["pod"] == "d"
       end
 
       def forecast
-        forecast_data = daily_forecast['data'][0..4] || []  # Get the next 5 days
+        forecast_data = daily_forecast["data"][0..4] || []  # Get the next 5 days
         forecast_data.map do |day|
           {
-            day: format_day_name(day['valid_date']),
-            date: day['valid_date'],
-            temperature: "#{day['temp'].round}°C",
-            min: "#{day['min_temp'].round}°C",
-            max: "#{day['max_temp'].round}°C"
+            day: format_day_name(day["valid_date"]),
+            date: day["valid_date"],
+            temperature: "#{day["temp"].round}°C",
+            min: "#{day["min_temp"].round}°C",
+            max: "#{day["max_temp"].round}°C"
           }
         end
       end

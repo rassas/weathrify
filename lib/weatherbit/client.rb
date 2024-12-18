@@ -1,5 +1,5 @@
-require 'faraday'
-require 'json'
+require "faraday"
+require "json"
 
 module Weatherbit
   class WeatherbitApiError < StandardError; end
@@ -24,9 +24,9 @@ module Weatherbit
 
     def get(endpoint, lat:, lng:)
       response = @connection.get(endpoint) do |req|
-        req.params['lat'] = lat
-        req.params['lon'] = lng
-        req.params['key'] = @api_key
+        req.params["lat"] = lat
+        req.params["lon"] = lng
+        req.params["key"] = @api_key
       end
 
       unless response.success?
