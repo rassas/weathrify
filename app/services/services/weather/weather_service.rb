@@ -22,7 +22,7 @@ module Services
       attr_reader :lat, :lng
 
       def client
-        @client ||= Weatherbit::Client.new(api_key: Rails.application.credentials.weatherbit_apikey )
+        @client ||= Weatherbit::Client.new(api_key: Rails.application.credentials.weatherbit_apikey)
       end
 
       def current_weather
