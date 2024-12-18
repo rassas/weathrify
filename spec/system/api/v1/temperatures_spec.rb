@@ -22,7 +22,7 @@ RSpec.describe "Api::V1::Temperatures", type: :system do
       expect(response).to have_http_status(:ok)
       json = JSON.parse(response.body)
       expect(json["average_temperature"]).to eq(average_temperature)
-      expect(json["cities"]).to eq(["London", "Paris", "Tokyo"])
+      expect(json["cities"]).to eq([ "London", "Paris", "Tokyo" ])
     end
   end
 

@@ -11,14 +11,14 @@ RSpec.describe Services::Weather::TemperatureService do
 
   describe "#call" do
     context "when all cities return temperatures" do
-      let(:city_list) { ["Paris", "London", "Berlin"] }
-      let(:temperatures) { [10.0, 15.0, 20.0] }
+      let(:city_list) { [ "Paris", "London", "Berlin" ] }
+      let(:temperatures) { [ 10.0, 15.0, 20.0 ] }
 
       before do
         city_list.zip(temperatures).each do |city, temp|
           allow(client_double).to receive(:current_weather)
             .with(city: city)
-            .and_return({ "data" => [{ "temp" => temp }] })
+            .and_return({ "data" => [ { "temp" => temp } ] })
         end
       end
 
