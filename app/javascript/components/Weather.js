@@ -2,13 +2,25 @@ import h from "components/htm_create_element";
 import ForecastRow from "components/ForecastRow";
 
 export default function Weather(weatherData) {
+  const handleRowClick = (dayData) => {
+    if (dayData.date === weatherData.date) {
+      document.querySelector(".date").textContent = weatherData.date;
+      document.querySelector(".temperature").textContent = weatherData.temperature;
+      document.querySelector(".feels-like").textContent = `Feels Like: ${weatherData.feelsLike}`;
+    }else {
+      document.querySelector(".date").textContent = dayData.date;
+      document.querySelector(".temperature").textContent = dayData.temperature;
+      document.querySelector(".feels-like").textContent = `Feels Like: ${dayData.min}`;
+    }
+  };
+
   return(h`
     <div class="weather-container ${weatherData.isDay ? "day" : "night"}">
       <div class="current-weather text-center">
-        <h1>${weatherData.city}</h1>
-        <p>${weatherData.date}</p>
-        <h2>${weatherData.temperature}</h2>
-        <p>Feels Like: ${weatherData.feelsLike}</p>
+        <h1 class="city-name">${weatherData.city}</h1>
+        <p class="date">${weatherData.date}</p>
+        <h2 class="temperature">${weatherData.temperature}</h2>
+        <p class="feels-like">Feels Like: ${weatherData.feelsLike}</p>
       </div>
 
       <div class="forecast-card">
@@ -34,9 +46,11 @@ export default function Weather(weatherData) {
             (day) =>
               h`<${ForecastRow}
                 day=${day.day}
-                condition=${day.condition}
                 min=${day.min}
                 max=${day.max}
+                date=${day.date}
+                temperature=${day.temperature}
+                onRowClick=${handleRowClick}
               />`
           )}
         </div>
