@@ -33,7 +33,7 @@ RSpec.describe "Api::V1::Temperatures", type: :system do
       get url
       expect(response).to have_http_status(:bad_request)
       json = JSON.parse(response.body)
-      expect(json["errors"]).to eq(["No cities provided"])
+      expect(json["errors"]).to eq([ "No cities provided" ])
     end
   end
 
@@ -47,7 +47,7 @@ RSpec.describe "Api::V1::Temperatures", type: :system do
       get url
       expect(response).to have_http_status(:unprocessable_entity)
       json = JSON.parse(response.body)
-      expect(json["errors"]).to eq(["Could not fetch temperatures for all cities"])
+      expect(json["errors"]).to eq([ "Could not fetch temperatures for all cities" ])
     end
   end
 
@@ -61,7 +61,7 @@ RSpec.describe "Api::V1::Temperatures", type: :system do
       get url
       expect(response).to have_http_status(:unprocessable_entity)
       json = JSON.parse(response.body)
-      expect(json["errors"]).to eq(["Something went wrong! You may reached the limit of 50 calls per day!"])
+      expect(json["errors"]).to eq([ "Something went wrong! You may reached the limit of 50 calls per day!" ])
     end
   end
 end
