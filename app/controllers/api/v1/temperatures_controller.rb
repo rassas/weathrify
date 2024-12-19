@@ -5,7 +5,7 @@ module Api
 
       # Expected format: /api/v1/temperatures?cities=London,Paris,Tokyo
       def index
-        return render json: { error: "No cities provided" }, status: :bad_request if city_list.blank?
+        return render json: { errors: [ "No cities provided" ] }, status: :bad_request if city_list.blank?
 
         average_temp = Services::Weather::TemperatureService.new(city_list).call
         render json: { average_temperature: average_temp.round(2), cities: city_list }
