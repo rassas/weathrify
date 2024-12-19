@@ -1,1 +1,1 @@
-<div data-react-component='Weather' data-props="<%= @weather_data.to_json %>"></div>
+<div data-react-component='Weather' data-props="<%= {weatherData: @weather_data, isFavorite: @is_favorite}.to_json %>"></div>

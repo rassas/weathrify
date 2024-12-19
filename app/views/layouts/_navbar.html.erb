@@ -16,6 +16,27 @@
           >
         </form>
       <% end %>
+      <% if user_signed_in? %>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              My favorite location
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <% current_user.cities.each do |city| %>
+                <li>
+                  <%= link_to city.name, root_path(lat: city.lat, lng: city.lng, city: city.name), class: "btn" %>
+                </li>
+              <% end %>
+              <% if current_user.cities.none? %>
+                <li>
+                  You don't have favorite location yet
+                </li>
+              <% end %>
+            </ul>
+          </li>
+        </ul>
+      <% end %>
       <ul class="navbar-nav ms-auto">
         <% if user_signed_in? %>
           <li class="nav-item dropdown">
