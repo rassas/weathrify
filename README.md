@@ -1,24 +1,157 @@
-# README
+# Weathrify
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+## Prerequisites
 
-* Ruby version
+- [Docker](https://docs.docker.com/get-docker/) installed
+- [Docker Compose](https://docs.docker.com/compose/install/) installed
 
-* System dependencies
+## Setup & Running the Project
 
-* Configuration
+1. **Build the Web Image**  
+  ```bash
+    docker-compose build web
+  ```
+2. **Create .env file** under the project root path and add `RAILS_MASTER_KEY=xxxx` to it.   
+1. **Setup the Database**  
+  ```bash
+    docker-compose run web bin/rails db:prepare
+  ```
 
-* Database creation
+1. **RUN the Server**
+  ```bash
+    docker-compse up
+  ```
+  The Rails server will start on http://localhost:3000
 
-* Database initialization
+## API Documentation
 
-* How to run the test suite
+All API responses are returned in JSON format.
 
-* Services (job queues, cache servers, search engines, etc.)
+### Sign Up
 
-* Deployment instructions
+**Endpoint:**  
+`POST /api/v1/users`
 
-* ...
+**Request Body:**  
+```json
+  {
+    "username": "YOUR_USERNAME",
+    "password": "YOUR_PASSWORD",
+    "password_confirmation": "YOUR_PASSWORD"
+  }
+```
+
+**Successful Response (Status: 200):**
+```json
+  {
+    "user": {
+      "id": 1,
+      "username": "YOUR_USERNAME"
+    },
+    "token": "YOUR_AUTH_TOKEN"
+  }
+```
+
+**Error Response (Status: 422, for example):**
+```json
+{
+  "errors": ["Error message 1", "Error message 2"]
+}
+```
+
+---
+
+### Sign In
+
+**Endpoint:**  
+`POST /api/v1/users/sign_in`
+
+**Request Body:**  
+```json
+  {
+    "username": "YOUR_USERNAME",
+    "password": "YOUR_PASSWORD"
+  }
+```
+
+**Successful Response (Status: 200):**
+```json
+  {
+    "user": {
+      "id": 1,
+      "username": "YOUR_USERNAME"
+    },
+    "token": "YOUR_AUTH_TOKEN"
+  }
+```
+
+**Error Response (Status: 422, for example):**
+```json
+{
+  "errors": ["Error message 1", "Error message 2"]
+}
+```
+
+---
+
+### Sign Out
+
+**Endpoint:**  
+`DELETE /api/v1/users`
+
+**Headers:**  
+`Authorization: YOUR_AUTH_TOKEN`
+
+**Request Body:**  
+```json
+  {
+    "message": "Successfully logged out"
+  }
+```
+
+**Successful Response (Status: 200):**
+```json
+  {
+    "errors": ["Invalid or missing token"]
+  }
+```
+
+**Error Response (Status: 422, for example):**
+```json
+  {
+    "errors": ["Error message 1", "Error message 2"]
+  }
+```
+
+---
+
+### Get Average Temperature for Cities
+
+**Endpoint:**  
+`GET /api/v1/temperatures?cities=London,Paris,Tokyo`
+
+**Headers:**  
+`Authorization: YOUR_AUTH_TOKEN`
+
+**Request Body:**  
+```json
+  {
+    "average_temperature": 15.3,
+    "cities": ["London", "Paris", "Tokyo"]
+  }
+```
+
+**Successful Response (Status: 200):**
+```json
+  {
+    "errors": ["Invalid token or parameters"]
+  }
+```
+
+**Error Response (Status: 422, for example):**
+```json
+  {
+    "errors": ["Error message"]
+  }
+```

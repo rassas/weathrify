@@ -13,7 +13,7 @@ module Api
             token: result[:token].token
           }, status: :created
         else
-          render json: { error: result[:errors].join(", ") }, status: :unauthorized
+          render json: { errors: result[:errors] }, status: :unauthorized
         end
       end
 

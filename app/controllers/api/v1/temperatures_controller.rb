@@ -10,9 +10,9 @@ module Api
         average_temp = Services::Weather::TemperatureService.new(city_list).call
         render json: { average_temperature: average_temp.round(2), cities: city_list }
       rescue Services::Weather::TemperatureService::FetchTemperatureError => e
-        render json: { error: e.message }, status: :unprocessable_entity
+        render json: { errors: [ e.message ] }, status: :unprocessable_entity
       rescue Weatherbit::WeatherbitApiError
-        render json: { error: "Something went wrong! You may reached the limit of 50 calls per day!" }, status: :unprocessable_entity
+        render json: { errors: [ "Something went wrong! You may reached the limit of 50 calls per day!" ] }, status: :unprocessable_entity
       end
 
       private
