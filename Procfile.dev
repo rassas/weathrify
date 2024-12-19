@@ -1,2 +1,2 @@
-web: env RUBY_DEBUG_OPEN=true bin/rails server
+web: env RUBY_DEBUG_OPEN=true bundle exec rails s -b 0.0.0.0
 css: yarn watch:css

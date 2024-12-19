@@ -14,10 +14,10 @@ module Api::V1::Concerns::Authentication
       if @current_token && !@current_token.expired?
         @current_user = @current_token.user
       else
-        render json: { error: "Token expired or invalid" }, status: :unauthorized
+        render json: { errors: [ "Token expired or invalid" ] }, status: :unauthorized
       end
     else
-      render json: { error: "No token provided" }, status: :unauthorized
+      render json: { errors: [ "No token provided" ] }, status: :unauthorized
     end
   end
 end
