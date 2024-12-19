@@ -5,13 +5,22 @@ export default function Weather(data) {
   const weatherData = data.weatherData
   let isFavorite = data.isFavorite
   let loading = false;
+  const urlParams = new URLSearchParams(window.location.search);
+  const latParam = urlParams.get('lat');
+  const lngParam = urlParams.get('lng');
+  const cityParam = urlParams.get('city');
+
+  let favoriteBtnIsVisibale = false
+  if (!!latParam && !!lngParam) {
+    favoriteBtnIsVisibale = true
+  }
 
   const handleRowClick = (dayData) => {
     if (dayData.date === weatherData.date) {
       document.querySelector(".date").textContent = weatherData.date;
       document.querySelector(".temperature").textContent = weatherData.temperature;
       document.querySelector(".feels-like").textContent = `Feels Like: ${weatherData.feelsLike}`;
-    }else {
+    } else {
       document.querySelector(".date").textContent = dayData.date;
       document.querySelector(".temperature").textContent = dayData.temperature;
       document.querySelector(".feels-like").textContent = `Feels Like: ${dayData.min}`;
@@ -21,11 +30,6 @@ export default function Weather(data) {
   const toggleFavorite = () => {
     if (loading) return
     loading = true
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const latParam = urlParams.get('lat');
-    const lngParam = urlParams.get('lng');
-    const cityParam = urlParams.get('city');
 
     const csrf_token = document.querySelector("meta[name='csrf-token']").content
 
@@ -59,9 +63,11 @@ export default function Weather(data) {
           <h1 class="city-name">
             ${weatherData.city}
           </h1>
-          <span class="favorite" onClick=${toggleFavorite}>
-            <i class="bi ${isFavorite ? "bi-heart-fill" : "bi-heart" }"></i>
-          </span>
+          ${favoriteBtnIsVisibale ? h`
+            <span class="favorite" onClick=${toggleFavorite}>
+              <i class="bi ${isFavorite ? "bi-heart-fill" : "bi-heart"}"></i>
+            </span>
+          ` : ''}
         </div>
         <p class="date">${weatherData.date}</p>
         <h2 class="temperature">${weatherData.temperature}</h2>
