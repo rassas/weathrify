@@ -103,17 +103,11 @@ All API responses are returned in JSON format.
 **Headers:**  
 `Authorization: YOUR_AUTH_TOKEN`
 
-**Request Body:**  
-```json
-  {
-    "message": "Successfully logged out"
-  }
-```
 
 **Successful Response (Status: 200):**
 ```json
   {
-    "errors": ["Invalid or missing token"]
+    "message": "Successfully logged out"
   }
 ```
 
@@ -134,7 +128,8 @@ All API responses are returned in JSON format.
 **Headers:**  
 `Authorization: YOUR_AUTH_TOKEN`
 
-**Request Body:**  
+
+**Successful Response (Status: 200):**
 ```json
   {
     "average_temperature": 15.3,
@@ -142,16 +137,9 @@ All API responses are returned in JSON format.
   }
 ```
 
-**Successful Response (Status: 200):**
-```json
-  {
-    "errors": ["Invalid token or parameters"]
-  }
-```
-
 **Error Response (Status: 422, for example):**
 ```json
   {
-    "errors": ["Error message"]
+    "errors": ["Error message 1", "Error message 2"]
   }
 ```
